@@ -1,7 +1,7 @@
 package com.jimi.recipe.domain;
 
 import jakarta.persistence.*;
-
+@Entity
 public class Notes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
