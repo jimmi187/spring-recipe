@@ -17,12 +17,13 @@ public class Recipe {
     private String url;
     private String directions;
 
-    //private Difficulty difficulty;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe") // mappedBy is target property of ingredient class
     private Set<Ingredient> ingredients;
     @Lob
     private Byte[] image;
+    @Enumerated(value = EnumType.STRING)  // EnumType.ORDINAL is gonna save enums as 1,2,3,4... if add mew values in middle,
+                                            // it not gonna shift it so its address new values as old ones
+    private Difficulty difficulty;
     @OneToOne(cascade = CascadeType.ALL)    // this set ownership to recipe
     private Notes notes;
 
@@ -112,5 +113,13 @@ public class Recipe {
 
     public void setNotes(Notes notes) {
         this.notes = notes;
+    }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
     }
 }
