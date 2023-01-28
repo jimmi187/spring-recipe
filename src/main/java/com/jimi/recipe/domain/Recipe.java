@@ -3,7 +3,7 @@ package com.jimi.recipe.domain;
 import jakarta.persistence.*;
 
 import java.util.Set;
-
+@Entity
 public class Recipe {
 
     @Id
@@ -16,16 +16,19 @@ public class Recipe {
     private String source;
     private String url;
     private String directions;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe") // mappedBy is target property of ingredient class
     private Set<Ingredient> ingredients;
     @Lob
     private Byte[] image;
-    @Enumerated(value = EnumType.STRING)  // EnumType.ORDINAL is gonna save enums as 1,2,3,4... if add mew values in middle,
-                                            // it not gonna shift it so its address new values as old ones
-    private Difficulty difficulty;
+    @Enumerated(value = EnumType.STRING)    // EnumType.ORDINAL is gonna save enums as 1,2,3,4... if add mew values in middle,
+    private Difficulty difficulty;          // it not gonna shift it so its address new values as old ones
     @OneToOne(cascade = CascadeType.ALL)    // this set ownership to recipe
     private Notes notes;
+    @ManyToMany
+    @JoinTable(name = "recipe_category",
+            joinColumns = @JoinColumn(name = "recipe_id"),  // kad ide sa ove strane
+            inverseJoinColumns = @JoinColumn(name = "category_id")) // kad ide od druge strane
+    private Set<Category> categories;
 
     public Long getId() {
         return id;
@@ -121,5 +124,13 @@ public class Recipe {
 
     public void setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }
