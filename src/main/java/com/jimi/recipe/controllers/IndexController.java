@@ -20,9 +20,11 @@ public class IndexController {
 
     private final RecipeService recipeService;
 
-    public IndexController(CategoryRepository categoryRepository, UnitOfMeasureRepository unitOfMeasureRepository, RecipeService recipeService) {
-        this.categoryRepository = categoryRepository;
-        this.unitOfMeasureRepository = unitOfMeasureRepository;
+    public IndexController(//CategoryRepository categoryRepository,
+                           //UnitOfMeasureRepository unitOfMeasureRepository,
+                           RecipeService recipeService) {
+//        this.categoryRepository = categoryRepository;
+//        this.unitOfMeasureRepository = unitOfMeasureRepository;
         this.recipeService = recipeService;
     }
 
