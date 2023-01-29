@@ -2,6 +2,7 @@ package com.jimi.recipe.domain;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 @Entity
 public class Recipe {
@@ -15,9 +16,10 @@ public class Recipe {
     private Integer servings;
     private String source;
     private String url;
+    @Lob
     private String directions;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe") // mappedBy is target property of ingredient class
-    private Set<Ingredient> ingredients;
+    private Set<Ingredient> ingredients = new HashSet<>();
     @Lob
     private Byte[] image;
     @Enumerated(value = EnumType.STRING)    // EnumType.ORDINAL is gonna save enums as 1,2,3,4... if add mew values in middle,
@@ -28,7 +30,7 @@ public class Recipe {
     @JoinTable(name = "recipe_category",
             joinColumns = @JoinColumn(name = "recipe_id"),  // kad ide sa ove strane
             inverseJoinColumns = @JoinColumn(name = "category_id")) // kad ide od druge strane
-    private Set<Category> categories;
+    private Set<Category> categories = new HashSet<>();
 
     public Long getId() {
         return id;

@@ -18,6 +18,15 @@ public class Ingredient {
     @OneToOne(fetch = FetchType.EAGER)  // uni directional relationship  fetch is gonna fetch it every time
     private UnitOfMeasure uom;
 
+
+    public Ingredient( String description, BigDecimal amount, UnitOfMeasure uom,Recipe recipe ) {
+
+        this.description = description;
+        this.amount = amount;
+        this.uom = uom;
+        this.recipe = recipe;
+    }
+
     public Long getId() {
         return id;
     }
