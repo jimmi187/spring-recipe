@@ -6,12 +6,14 @@ import com.jimi.recipe.domain.UnitOfMeasure;
 import com.jimi.recipe.repositories.CategoryRepository;
 import com.jimi.recipe.repositories.UnitOfMeasureRepository;
 import com.jimi.recipe.services.RecipeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Optional;
 
+@Slf4j
 @Controller
 public class IndexController {
 
@@ -34,7 +36,7 @@ public class IndexController {
 //        Optional<UnitOfMeasure> optionalUnitOfMeasure = unitOfMeasureRepository.findByDescription("Teaspoon");
 //        System.out.println("Cat id is: " + categoryOptional.get().getId());
 //        System.out.println("UOM id is: " + optionalUnitOfMeasure.get().getId());
-
+        log.debug("Getting index page");
         model.addAttribute("recipes", recipeService.getRecipes());
 
         return "index";
