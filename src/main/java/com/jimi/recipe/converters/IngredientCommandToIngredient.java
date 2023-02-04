@@ -3,7 +3,6 @@ package com.jimi.recipe.converters;
 import com.jimi.recipe.commands.IngredientCommand;
 import com.jimi.recipe.domain.Ingredient;
 import jakarta.annotation.Nullable;
-import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -27,7 +26,7 @@ public class IngredientCommandToIngredient implements Converter<IngredientComman
         ingredient.setId(source.getId());
         ingredient.setAmount(source.getAmount());
         ingredient.setDescription(source.getDescription());
-        ingredient.setUom(uomConverter.convert(source.getUnitOfMeasure()));
+        ingredient.setUom(uomConverter.convert(source.getUom()));
         return ingredient;
     }
 }
