@@ -20,11 +20,13 @@ public class RecipeController {
     }
 
 
+    //@ResponseBody for RESTController just change return value of method to DTO
     @GetMapping
     @RequestMapping("/{id}/show")
     public String showById(@PathVariable String id, Model model){
         model.addAttribute("recipe", recipeService.findById(Long.valueOf(id)));
         return "recipe/show";
+       //return recipeService.findCommandById(Long.valueOf(id));
 
     }
 
